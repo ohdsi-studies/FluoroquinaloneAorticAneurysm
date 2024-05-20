@@ -1,7 +1,9 @@
 ---
-title: "Is fluoroquinolone use associated with the development of aortic aneurysms and aortic dissections"
+title: "| RESEARCH PROTOCOL\n| \n| Is fluoroquinolone use associated with the development of aortic aneurysms and aortic dissections \n"
 fontsize: 12pt
 geometry: margin=1in
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "../docs") })
 output:
   bookdown::html_document2:
     df_print: paged
@@ -49,8 +51,8 @@ longtable: yes
 mainfont: Arial
 bibliography: Protocol.bib
 params:
-  date: '28-Mar-2023'
-  version: 0.0.1
+  date: '02-May-2023'
+  version: 1.1.0
 subtitle: 'Version: `r params$version`'
 link-citations: yes
 csl: bmj.csl
@@ -62,6 +64,7 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE)
 options(kableExtra.latex.load_packages = FALSE)
 library(kableExtra)
 library(dplyr)
+options(readr.show_col_types = FALSE)
 options(knitr.kable.NA = "")
 options(knitr.table.format = function() {
   if (knitr::is_latex_output()) {
@@ -79,8 +82,14 @@ latex_table_font_size <- 8
 
 ```{r abbreviations, echo=FALSE}
 abbreviations <- readr::read_delim(col_names = FALSE, delim = ";", trim_ws = TRUE, file = "
-  CDM; Common data model
-  CAP; Community Acquired Pneumonia
+  AA; Aortic aneurysm
+  AD;	Aortic dissection
+  CDM;	Common Data Model
+  OMOP;	Observational Medical Outcomes Partnership
+  OHDSI;	Observational Health Data Science and Informatics
+  RxNorm;	US-specific terminology that contains all medications available on the US market
+  SNOMED;	Systematized Nomenclature of Medicine
+  UTI;	Urinary Tract Infection
   ",
   show_col_types = FALSE)
 tab <- knitr::kable(abbreviations, col.names = NULL, linesep = "", booktabs = TRUE)
@@ -101,7 +110,13 @@ if (knitr::is_latex_output()) {
 ```{r parties, echo=FALSE}
 parties <- readr::read_delim(col_names = TRUE, delim = ";", trim_ws = TRUE, file = "
   Investigator; Institution/Affiliation
-  Joe Bruin *; Department of Biostatistics, University of California, Los Angeles, Los Angeles, CA, USA
+  Jack Janetzki*;	University of South Australia
+  Nicole Pratt*;	University of South Australia
+  Seng Chan You;	Yonsei University
+  Seonji Kim;	Yonsei University
+  Jung Ho Kim*;	Yonsei University
+  Jung Ah Lee;	Yonsei University
+  Patrick Ryan*;	Columbia University, Janssen
   ",
   show_col_types = FALSE)
 tab <- kable(parties, booktabs = TRUE, linesep = "") %>%
@@ -116,16 +131,15 @@ if (knitr::is_latex_output()) {
 }
 ```
 
-## Disclosures
+## Sponsor
 
 This study is undertaken within Observational Health Data Sciences and Informatics (OHDSI), an open collaboration.
-**JB** is a fictional character.
 
 \clearpage
 
 # Abstract
 
-This study will describe the incidence and time-to event of aortic aneurysm and aortic dissections following exposure to fluoroquinolone antibiotics. The study will also draw comparisons between fluoroquinolone antibiotics and other antibiotics used to treat the same infection and risk of aortic outcomes. A risk prediction model will also be developed to determine the probability that a patient will go on to have an aortic aneurysm or dissection following exposure to a fluoroquinolone antibiotic.   
+This study will describe the incidence and time-to event of aortic aneurysm and aortic dissections following exposure to fluoroquinolone antibiotics. The study will also  compare the risk of AA/AD  between individual fluoroquinolone antibiotics with other individual antibiotics used to treat the same infection (head-to-head comparisons). We will also compare the risk of AA/AD between fluoroquinolone antibiotics as a class with other individual antibiotics used to treat the same infection. A risk prediction model will also be developed to determine the probability that a patient will go on to have    an aortic aneurysm or dissection following exposure to a fluoroquinolone antibiotic.  
 
 **Background and Significance**: 
 
@@ -176,10 +190,19 @@ if (knitr::is_latex_output()) {
 
 ```{r dates, echo=FALSE}
 dates <- readr::read_delim(col_names = TRUE, delim = ";", trim_ws = TRUE, file = "
-  Milestone; Planned / actual date
-",
-  show_col_types = FALSE)
+•	Identify data partners
+•	Data partners to share data diagnostics results
+•	Complete candidate phenotypes
+•	Data partners to share phenotype diagnostics results
+•	Finalize analytic package
+•	Data partners to run analytic package
+•	Data partners to share study diagnostic results
+•	Finalize results from data partners
+•	Manuscript drafting and writing
+")
+
 tab <- kable(dates, booktabs = TRUE, linesep = "")
+
 if (knitr::is_latex_output()) {
   tab %>% kable_styling(latex_options = c("striped", "hold_position"), font_size = latex_table_font_size)
 } else {
