@@ -10,8 +10,8 @@ Is fluoroquinolone use associated with the development of aortic aneurysms and a
 - Study lead forums tag: **[[Lead tag]](https://forums.ohdsi.org/u/[Lead tag])**
 - Study start date: **28-03-2023**
 - Study end date: **-**
-- Protocol: **-**
+- Protocol: **https://ohdsi-studies.github.io/FluoroquinoloneAorticAneurysm/Protocol.html**
 - Publications: **-**
-- Results explorer: **-**
+- Results explorer: **https://data.ohdsi.org/FluoroquinoloneAorticAneurysm/**
 
 This study will describe the incidence and time-to event of aortic aneurysm and aortic dissections following exposure to fluoroquinolone antibiotics. The study will also draw comparisons between fluoroquinolone antibiotics and other antibiotics used to treat the same infection and risk of aortic outcomes. A risk prediction model will also be developed to determine the probability that a patient will go on to have an aortic aneurysm or dissection following exposure to a fluoroquinolone antibiotic.   
