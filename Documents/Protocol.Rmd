@@ -112,7 +112,7 @@ parties <- readr::read_delim(col_names = TRUE, delim = ";", trim_ws = TRUE, file
   Investigator; Institution/Affiliation
   Jack Janetzki*;	University of South Australia
   Nicole Pratt*;	University of South Australia
-  Seng Chan You;	Yonsei University
+  Seng Chan You*;	Yonsei University
   Seonji Kim;	Yonsei University
   Jung Ho Kim*;	Yonsei University
   Jung Ah Lee;	Yonsei University
@@ -139,13 +139,16 @@ This study is undertaken within Observational Health Data Sciences and Informati
 
 # Abstract
 
-This study will describe the incidence and time-to event of aortic aneurysm and aortic dissections following exposure to fluoroquinolone antibiotics. The study will also  compare the risk of AA/AD  between individual fluoroquinolone antibiotics with other individual antibiotics used to treat the same infection (head-to-head comparisons). We will also compare the risk of AA/AD between fluoroquinolone antibiotics as a class with other individual antibiotics used to treat the same infection. A risk prediction model will also be developed to determine the probability that a patient will go on to have    an aortic aneurysm or dissection following exposure to a fluoroquinolone antibiotic.  
+**Question** 
+Are fluoroquinolones linked to increased risk of aortic aneurysm or dissection?
+
+This distributed network analysis will describe the incidence and time-to event of aortic aneurysm and aortic dissection following exposure to fluoroquinolone antibiotics. The study will also  compare the risk of AA/AD  between individual fluoroquinolone antibiotics with other individual antibiotics used to treat the same infection (head-to-head comparisons). We will also compare the risk of AA/AD between fluoroquinolone antibiotics as a class with other individual antibiotics used to treat the same infection.  
 
 **Background and Significance**: 
 
 Fluoroquinolone antibiotics are a broad-spectrum class of antibiotics which are used to treat urinary tract infections, pneumonia, gastroenteritis, epididmyo-orchitis, prostatitis or bone and joint infections.  Fluoroquinolone use is rising internationally; approximately 7.81 billion doses of fluoroquinolones have been administered over the last decade. Whilst fluoroquinolone antibiotics are generally well tolerated, neurological and cardiovascular adverse events have been identified in post-market surveillance studies. Additionally in rare cases (0.1-1%), use of fluoroquinolones has been associated with risk of aortic aneurysm or dissection. The pharmacological mechanism between fluoroquinolone use and aortic aneurysm or dissection occurrence is not fully understood. However, the pathogenesis of this adverse event appears to involve extracellular matrix degradation in the aorta mediated by matrix metalloproteinases, dysfunction and apoptosis of vascular smooth muscle cells in the aorta and also increased concentrations of pro-inflammatory cytokines at the site contributing to remodelling of the aorta.  
 
-Subsequent to post-market surveillance, international medicine regulators including the Therapeutic Goods Administration (TGA) in Australia have released warnings, including black box warnings, detailing the risk of aortic dissections and aneurysms when fluoroquinolones are used. Whilst there have been numerous warnings from regulators about the association of quinolone antibiotics with risk of aortic aneurysms or dissections, the quality of the evidence underpinning this association is moderate. The most recent meta-analysis of four observational studies found that people who used fluoroquinolone antibiotics were at an increased risk of aortic diseases compared to those who used other antibiotics (adjusted odds ratio 2.10; 95% CI 1.65-2.68)(1) and other studies have shown that risk of aortic dissection appears highest within 30 days of taking a fluoroquinolone and the risk remains elevated for a year(2).  As far as we are aware, a data-driven individual patient-level prediction model estimating the probability of aortic aneurysm or dissection in those initiated on fluroquinolones has not been previously examined. 
+Subsequent to post-market surveillance, international medicine regulators have issued safety warnings regarding the risk of aortic aneurysm or dissection (AA/AD) with fluoroquinolone antibiotics (FQ) antibiotics. Whilst there have been numerous warnings from regulators about the association of fluoroquinolone antibiotics with risk of aortic aneurysms or dissections, the quality of the evidence underpinning this association is moderate. The most recent meta-analysis of four observational studies found that people who used fluoroquinolone antibiotics were at an increased risk of aortic diseases compared to those who used other antibiotics (adjusted odds ratio 2.10; 95% CI 1.65-2.68)(1) and other studies have shown that risk of aortic dissection appears highest within 30 days of taking a fluoroquinolone and the risk remains elevated for a year(2). Prior studies supporting the risk are limited by inconsistencies in study design, approaches to identifying exposures and outcomes, and methods used to address confounding. 
 
 **Study Aims**: 
 
@@ -157,13 +160,25 @@ B. Estimates the comparative safety of quinolones vs other antibiotics; comparat
 
 C. Designs a risk prediction model to predict the probability that a patient will experience aortic aneurysm or aortic dissection following exposure to a fluoroquinolone antibiotic.  
 
-**Study Description**: 
+**Study Description**:
+
+A distributed network study will be undertaken via the OHDSI netowrk. The selection of data sources will be based on their comprehensive popluation coverage, extensive historical data, diverse data capture processes, voluntary participation, and the availability of verified outcome information, ensuring robust and reliable research. 
 
 * **Population**: 
 
+People taking fluoroquinolones for treatment of urinary tract infections (UTI) 
+
+
+
 * **Comparators**:
+1. Trimethoprim with or without sulfamethoxazole (TMP)
+
+
 
 * **Outcomes**:
+1. Aortic Aneurysm (AA) 
+2. Aortic Dissection (AD) 
+3. Composite outcome of AA or AD
 
 * **Design**: 
 
@@ -230,11 +245,12 @@ We intend to study data with different data source provenance (e.g., electronic 
 
 ## Study Population
 
-The study is an observational cohort study based on routinely-collected health care data which has been mapped to the Observational Medical Outcomes Partnership (OMOP) Common Data Model (CDM). Two cohorts will be identified:  
+The study is an observational cohort study based on routinely-collected health care data which has been mapped to the Observational Medical Outcomes Partnership (OMOP) Common Data Model (CDM). 
 
-1. people diagnosed with community acquired pneumonia  
+The study population will be defined as:   
 
-2. people diagnosed with urinary tract infection.  
+1. people diagnosed with urinary tract infection 
+
 
 Patients within each cohort will further be separated by treatment in an outpatient setting or hospital setting and by prescription of fluoroquinolone antibiotic or active comparator.  
 
@@ -244,7 +260,7 @@ Specifically new users of fluoroquinolones (in outpatient or inpatient setting).
 
 Comparator cohort: new users of active comparator antibiotics (see table below).  
 
-For both groups we restrict to people with (1) Community Acquired Pneumonia or (2) Urinary Tract Infection, two of the main indications for the treatment of interest. The outcome is aortic aneurysm or aortic dissection.  
+For both groups we restrict to people with  Urinary Tract Infection, a major indications for the treatment of interest. The outcome is aortic aneurysm or aortic dissection.  
 
 Study population: all subjects in the database will be included who meet the following criteria (note the index date is the start of the first exposure to fluoroquinolone or active comparator): 
 
@@ -314,8 +330,100 @@ Target Cohort #4: Persons with first ever UTI taking an active comparator antibi
 
 ≥1 record of UTI diagnosis in hospital setting and ≥1 prescription for active comparator medications 
 
+Treatment cohort: 
+To ensure systemic exposure we will exclude medications for otic or optic use only. 
+
+Included fluoroquinolones and concept code: 
+
+Concept ID    Concept name 
+1721543       norfloxacin 
+35198003      pazufloxacin mesilate 
+1747032       grepafloxacin 
+19041153      temafloxacin 
+1592954       delafloxacin 
+1716721       gemifloxacin 
+923081        ofloxacin 
+19050750      fleroxacin 
+1712549       trovafloxacin 
+35197938      garenoxacin mesilate hydrate 
+36878831      nadifloxacin 
+40161662      besifloxacin 
+43009030      tosufloxacin tosylate hydrate 
+1743222       enoxacin 
+35834909      lascufloxacin hydrochloride 
+35198165      sitafloxacin hydrate 
+1789276       gatifloxacin 
+1797513       ciprofloxacin 
+1742253       levofloxacin 
+1716903       moxifloxacin 
+35197897      prulifloxacin 
+19027679      pefloxacin 
+1733765       sparfloxacin 
+1707800       lomefloxacin 
 
 ## Exposure Comparators
+
+1. Trimethoprim with or without sulfamethoxazole (TMP)
+
+
+Concept ID     Concept Name 
+40081374       sulfamethoxazole / trimethoprim Injectable Solution 
+36882762       Sulfamethoxazole / Trimethoprim Injectable Suspension 
+40220482       sulfamethoxazole / trimethoprim Injection 
+35153537       Sulfamethoxazole / Trimethoprim Oral Granules 
+40147374       sulfamethoxazole / trimethoprim Oral Solution 
+40081379       sulfamethoxazole / trimethoprim Oral Suspension 
+40081388       sulfamethoxazole / trimethoprim Oral Tablet 
+1705674        trimethoprim 
+
+2. Cephalosporin (CPH)
+
+
+Concept ID      Concept Name 
+40798709        Cefacetrile 
+1796435         cefixime 
+40798704        Cefmenoxime 
+19072255        cefmetazole 
+43008993        cefminox sodium 
+19028286        cefodizime 
+19072857        cefonicid 
+1773402         cefoperazone 
+19028288        ceforanide 
+1774470         cefotaxime 
+1774932         cefotetan 
+19051271        cefotiam 
+1775741         cefoxitin 
+43009045        cefpiramide sodium 
+1749008         cefpodoxime 
+1738366         cefprozil 
+43009083        cefroxadine 
+19051345        cefsulodin 
+1776684         ceftazidime 
+35198137        cefteram pivoxil 
+43008994        ceftezole sodium 
+1749083         ceftibuten 
+1777254         ceftizoxime 
+1777806         ceftriaxone 
+1778162         cefuroxime 
+1786621         cephalexin 
+19052683        cephaloridine 
+19086759        cephalothin 
+19086790        cephapirin 
+1786842         cephradine 
+43009087        flomoxef sodium 
+1708100         loracarbef 
+19126622        moxalactam 
+1768849         cefaclor 
+1769535         cefadroxil 
+19070174        cefamandole 
+19070680        cefatrizine 
+40798700        Cefazedone 
+1771162         cefazolin 
+43009082        cefbuperazone sodium 
+43009044        cefcapene pivoxil hydrochloride hydrate 
+1796458         cefdinir 
+1747005         cefditoren 
+19028241        cefetamet 
 
 ## Outcomes {#outcomes}
 
