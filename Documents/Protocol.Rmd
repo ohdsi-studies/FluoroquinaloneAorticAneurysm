@@ -150,39 +150,47 @@ Fluoroquinolone antibiotics are a broad-spectrum class of antibiotics which are 
 
 Subsequent to post-market surveillance, international medicine regulators have issued safety warnings regarding the risk of aortic aneurysm or dissection (AA/AD) with fluoroquinolone antibiotics (FQ) antibiotics. Whilst there have been numerous warnings from regulators about the association of fluoroquinolone antibiotics with risk of aortic aneurysms or dissections, the quality of the evidence underpinning this association is moderate. The most recent meta-analysis of four observational studies found that people who used fluoroquinolone antibiotics were at an increased risk of aortic diseases compared to those who used other antibiotics (adjusted odds ratio 2.10; 95% CI 1.65-2.68)(1) and other studies have shown that risk of aortic dissection appears highest within 30 days of taking a fluoroquinolone and the risk remains elevated for a year(2). Prior studies supporting the risk are limited by inconsistencies in study design, approaches to identifying exposures and outcomes, and methods used to address confounding. 
 
-**Study Aims**: 
+***Study Aims/Objectives**: 
 
-This study is a multinational cohort study which: 
+This study is a multinational cohort study which will estimate the risk of AA/AD following FQ exposure compared to other comparable antibiotics for urinary tract infection (UTI).
+
+More specifically we will:
 
 A. Characterizes the incidence and time-to event of aortic events following fluoroquinolone exposure 
 
 B. Estimates the comparative safety of quinolones vs other antibiotics; comparative safety between fluoroquinolones 
 
-C. Designs a risk prediction model to predict the probability that a patient will experience aortic aneurysm or aortic dissection following exposure to a fluoroquinolone antibiotic.  
 
-**Study Description**:
+***Study Description**:
 
-A distributed network study will be undertaken via the OHDSI netowrk. The selection of data sources will be based on their comprehensive popluation coverage, extensive historical data, diverse data capture processes, voluntary participation, and the availability of verified outcome information, ensuring robust and reliable research. 
+A large-scale  distributed network study will be undertaken via the OHDSI network. The selection of data sources will be based on their comprehensive population coverage, extensive historical data, diverse data capture processes, voluntary participation, and the availability of verified outcome information, ensuring robust and reliable research. 
 
-* **Population**: 
+***Population**: 
 
-People taking fluoroquinolones for treatment of urinary tract infections (UTI) 
+Participants will be patients 35 years or older initiating antibiotic treatment for UTI 
+
+People taking systemic fluoroquinolones for treatment of urinary tract infections (UTI) 
 
 
 
 * **Comparators**:
 1. Trimethoprim with or without sulfamethoxazole (TMP)
+2. Cephalosporins (CPH)
 
 
 
 * **Outcomes**:
-1. Aortic Aneurysm (AA) 
-2. Aortic Dissection (AD) 
-3. Composite outcome of AA or AD
+The primary outcome will be occurrence of AA/AD within 60 days after exposure. Secondary outcomes will be first occurrence of the individual outcome AA or AD.
+
+Cox proportional hazards models will be used to estimate the risk of each outcome after 1:1 propensity score (PS) matching. All results will be calibrated based on the results from negative control outcomes. A series of pre-defined diagnostics will be employed to evaluate the analytical method performance. Only results of analyses passing all diagnostics will be reported. Hazard ratios (HRs) will be pooled across databases using Bayesian random effects meta-analysis. 
+
 
 * **Design**: 
 
+The study will be a retrospective cohort study. 
+
 * **Timeframe**: 
+January 2010 and December 2019. 
 
 \clearpage
 
@@ -205,15 +213,18 @@ if (knitr::is_latex_output()) {
 
 ```{r dates, echo=FALSE}
 dates <- readr::read_delim(col_names = TRUE, delim = ";", trim_ws = TRUE, file = "
-•	Identify data partners
-•	Data partners to share data diagnostics results
-•	Complete candidate phenotypes
-•	Data partners to share phenotype diagnostics results
-•	Finalize analytic package
-•	Data partners to run analytic package
-•	Data partners to share study diagnostic results
-•	Finalize results from data partners
-•	Manuscript drafting and writing
+
+The SOS challenge tutorial schedule is described below: 
+•	Mar 28th 2023: Initiate network study, identifying data partners
+•	Apr 4th 2023: Data diagnostics (data partners to share data diagnostics results)
+•	Apr 11th 2023: Phenotype development
+•	Apr 18th 2023: Phenotype evaluation (complete candidate phenotypes and data partners to share phenotype diagnostic results)
+•	Apr 25th 2023: Create analysis specifications (finalize analytic package)
+•	May 2nd 2023: Network execution (Data partners to run analytic package)
+•	May 9th 2023: Study diagnostics (data partners to share study diagnostic results)
+•	May 14 2023: Evidence synthesis
+•	May 23 2023: Interpretation of results by investigators
+•	May 2023 to June 204: Manuscript drafting and writing 
 ")
 
 tab <- kable(dates, booktabs = TRUE, linesep = "")
@@ -227,15 +238,26 @@ if (knitr::is_latex_output()) {
 
 # Rationale and Background
 
+Fluoroquinolone antibiotics (FQ) are broad-spectrum antibiotics that treat a variety of infections, including urinary tract infections (UTIs). Although FQs are generally well tolerated, a recent meta-analysis based on five observational post-market studies concluded that FQ use doubled the risk of incident aortic diseases. While aortic aneurysm (AA) and aortic dissections (AD) are rare, they are fatal in 65-90% of cases, especially when an AA ruptures. 
+
+In response to safety concerns raised by observational studies and adverse events reported to regulatory bodies internationally, warnings were issued regarding the risk of AA/AD with FQ antibiotics. Studies ahve shown that the use of outpatient FQs has decreased following these safety warnings in some but not all settings, with the United Kingdom Medicines and Healthcare products Regulatory Agency recently issuing further restrictions on prescribing. Patients have also shared concerns about the risk profile of FQs in public hearings. 
+
+Recent studies have suggested that the previous studies reporting associations between FQs and some adverse drug reactions (ADRs) may have been affected by indication bias or surveillance bias. A meta-analysis of the four studies listed in the U.S. Federal Drug Administration (FDA) Drug Safety Communication regarding the association of FQs with AA/AD noted that confounding by indication may have influenced results and only one study included an active comparator. 
+
+
 # Study Objectives
+Given the conflicting results of previous studies, the recognised efficacy of FQs and the serious nature of AA/AD complications, we will conduct a large-scale distributed network study to estimate the risk of AA/AD after FQ exposure for treatment of UTI compared to other antibiotics. We will employ best-practice methodology to minimize potential systematic bias and use objective diagnostics to evaluate the analytical method performance. 
 
 # Research Methods
 
+
 ## Study Design
 
-This study uses `CohortMethod` [@Schuemie2020-fa].
+New user cohort study. 
 
 ## Data Sources
+
+We will conduct a distributed network analysis across the Observational Health Data Science and Informatics (OHDSI) Data Network. 
 
 The study will be conducted using data from real world data sources that have been mapped to the OMOP Common Data Model in collaboration with the Observational Health Data Sciences and Informatics (OHDSI) and European Health Data and Evidence Network (EHDEN) initiatives. The OMOP Common Data Model (https://ohdsi.github.io/CommonDataModel/) includes a standard representation of health care trajectories (such as information related to drug utilization and condition occurrence), as well as common vocabularies for coding clinical concepts, and enables consistent application of analyses across multiple disparate data sources (Voss et al., 2015). 
 
@@ -243,95 +265,48 @@ We intend to study data with different data source provenance (e.g., electronic 
 
 We intend to study data with different data source provenance (e.g., electronic medical records, insurance claims) as well data representing different populations (privately insured employees or patients with limited income) and geographies. This study will be run on datasets that have been converted to the Observational Medical Outcomes Partnership (OMOP) Common Data Model (CDM) 
 
+All participating sites and data partners will obtain approval or exemption from their institutional review boards prior to participating in the study. 
+
 ## Study Population
 
-The study is an observational cohort study based on routinely-collected health care data which has been mapped to the Observational Medical Outcomes Partnership (OMOP) Common Data Model (CDM). 
+The study is an observational cohort study based on routinely-collected health care data which has been mapped to the Observational Medical Outcomes Partnership (OMOP) Common Data Model (CDM).
+
+We will perform a new-user cohort study to estimate the comparative risk of AA/AD with new use of FQs compared to alternative antibiotics. 
 
 The study population will be defined as:   
 
 1. people diagnosed with urinary tract infection 
 
 
-Patients within each cohort will further be separated by treatment in an outpatient setting or hospital setting and by prescription of fluoroquinolone antibiotic or active comparator.  
+Included patients must be receiving antibiotic treatment in an outpatient setting.  
 
 Treatment cohort: people taking fluoroquinolones.  
 
-Specifically new users of fluoroquinolones (in outpatient or inpatient setting).  
+Specifically new users of fluoroquinolones (in outpatient setting).  
 
-Comparator cohort: new users of active comparator antibiotics (see table below).  
+Comparator cohort: new users of active comparator antibiotics (see below)  
 
-For both groups we restrict to people with  Urinary Tract Infection, a major indications for the treatment of interest. The outcome is aortic aneurysm or aortic dissection.  
+For both groups we restrict to people with  Urinary Tract Infection, a major indication for the treatment of interest. To minimize confounding by indication we will restrict analysis to patients treated in an outpatient setting for UTIs, which are commonly localised, well-characterized infections with a simliar severity profile across presentations. 
+
 
 Study population: all subjects in the database will be included who meet the following criteria (note the index date is the start of the first exposure to fluoroquinolone or active comparator): 
 
-First ever exposure to fluoroquinolone or active comparator 
 
-At least 365 days of observation time prior to the index date 
+Patients will be included if at the index date they were aged 35 years or older, had at least 365 days of prior observation in the database, had a recorded condition occurrence of UTI on or within 7 days, and were not hospitalised for any reason on or within7 days prior to the index date. 
 
-Hospital or outpatient diagnosis of CAP or UTI on or preceding the index date (1 week? Note Newton study: consider up to 30 days prior to 7 days post as well)  
 
-No diagnosis of aortic aneurysm or dissection preceding the index date (note: consider not excluding people who have only had aortic aneurysm prior as these may go on to have rupture with quinolone exposure)  
+Patients could have no diagnosis of aortic aneurysm or dissection preceding the index date.
 
-We will limit patients to those aged 35 years or older (for discussion as per JAMA newton paper fluoroquinolone use with short-term risk of development of aortic aneurysm; or limit to over 50s) 
+Three exposure cohorts will be generated: 
+(1) FQ exposure, 
+(2) TMP exposure, or
+(3) CPH exposure. 
 
-Community acquired pneumonia (CAP) cohort 
-
-Concept set: pneumonia OHDSI concept ID 255848, 257315 (athena) (concept code for acute pneumonia as per phenotype library as we’ve defined inclusion criteria) 
-
-Target Cohort #1: Persons with first ever community acquired pneumoniaCAP prescribed fluoroquinolone in outpatient setting have: 
-
-≥1 record of CAP diagnosis in outpatient setting and ≥1 prescription for fluoroquinolone antibiotics 
+Only systemic exposure from medications administered orally or via injection will be included in the exposure definitions. TMP and CPH were selected as comparator antibiotics as they are generally recommended in treatment guidelines for UTI. 
 
 
 
-Target Cohort #2: Persons with first ever community acquired pneumoniaCAP taking an active comparator antibiotic in outpatient setting 
 
-≥1 record of CAP diagnosis in outpatient setting and ≥1 prescription for active comparator medications 
-
-
-
-Target Cohort #3: Persons with first ever CAP prescribed fluoroquinolone in hospital setting have:  
-
-≥1 record of CAP diagnosis in hospital setting and ≥1 prescription for fluoroquinolone antibiotics 
-
-
-
-Target Cohort #4: Persons with first ever community acquired pneumoniaCAP taking an active comparator antibiotic in hospital setting 
-
-≥1 record of CAP diagnosis in hospital setting and ≥1 prescription for active comparator medications 
-
-
-
-Urinary tract infection (UTI) cohort 
-
-Concept set: acute UTI OHDSI concept ID 4331815 (athena), (concept code for UTI as per phenotype library as we’ve defined inclusion criteria) 
-
-
-
-Target Cohort #1: Persons with first ever urinary tract infectionUTI prescribed fluoroquinolone in outpatient setting have: 
-
-≥1 record of UTI diagnosis in outpatient setting and ≥1 prescription for fluoroquinolone antibiotics 
-
-
-
-Target Cohort #2: Persons with first ever urinary tract infectionUTI taking an active comparator antibiotic in outpatient setting 
-
-≥1 record of UTI diagnosis in outpatient setting and ≥1 prescription for active comparator medications 
-
-
-
-Target Cohort #3: Persons with first ever UTI prescribed fluoroquinolone in hospital setting have:  
-
-≥1 record of UTI diagnosis in hospital setting and ≥1 prescription for fluoroquinolone antibiotics 
-
-
-
-Target Cohort #4: Persons with first ever UTI taking an active comparator antibiotic in hospital setting 
-
-≥1 record of UTI diagnosis in hospital setting and ≥1 prescription for active comparator medications 
-
-Treatment cohort: 
-To ensure systemic exposure we will exclude medications for otic or optic use only. 
 
 Included fluoroquinolones and concept code: 
 
@@ -427,37 +402,145 @@ Concept ID      Concept Name
 
 ## Outcomes {#outcomes}
 
-The outcome is first occurrence of either:   
+The primary outcome will be diagnosis of either AA or AD during a hospital or emergency department visit in the 60 days after index date. The secondary endpoints included the occurence of each outcome separately. Patients will be excluded if they have a recorded outcome event in the 365 days prior to index date. 
 
-Aortic aneurysm:  
+Details of the outcome definitions are provided below: 
 
-Index rule defining the index date:  
+###Aortic Aneurysm
+ICD-9-CM:
+441;441.0; 441.1; 441.2; 441.3; 441.3; 441.4; 441.5; 441.6; 441.7; 441.9
 
-Any hospitalization with diagnosis code of aortic aneurysm as primary or secondary diagnosis (query: do we also require an MRI in hospital?) 
+ICD-10:
+I71.0; I71.1; I71.2; I71.3; I71.4; I71.5; I71.6; I71.8; I71.9
 
-Athena concept code: 317585 (athena OHDSI) but not some descendants (need to check which to exclude) 
+CPT-4:
+001T; 0002T' 0033T; 0034T; 0035T; 0036T; 0039T; 0078T; 0079T; 0080T; 0081T; 33720; 33877; 33880; 33881; 34800; 34802; 34803; 34804; 34805; 34813; 34830; 34831; 34832; 35081; 35082; 35091; 35092; 35102; 35103; 75952; 75953; 9001F; 9003F; 9004f
 
-Inclusion rules based on the index date: 
+ICD-9 PROCEDURE:
+39.71; 39.73
 
-Cannot have an aortic aneurysm diagnosis or dissection code prior to the index date
+Positive Predictive Value was calculated for this outcome based on hospitalization or emergency room (ER) visits at any diagnosis position based on the ICD-10 code in the single Korean tertiary hospital, Severance Hospital (Yonsei University Heatlh System). PPV, % (n) = 97 (97/100)
 
-Aortic dissection:  
+###Aortic dissection
+ICD-9-CM: 
+441.0; 441.00; 441.01; 441.02; 441.03
 
-Index rule defining the index date:  
+ICD-10:
+I71.0
 
-Any hospitalization with diagnosis code of aortic dissection as primary or secondary diagnosis (query: do we also require an MRI in hospital?) 
+PPV= 79% (N= 79/100)
 
-Athena concept code: 320739 (athena OHDSI) but not some descendants (need to check which to exclude) 
+###Negative control outcomes
+Negative contorl outcomes are known to have no association with the target (fluoroquinolone) or comparator (trimethoprim or cephalosporin) cohorts, such that we can assume the true relative risk between the two cohorts is 1. Negative control outcomes for this study will be selected based on a similar process to that outlined by Voss et al. Once potential negative control candidates are selected, a manual clinical review will be performed to exclude any pairs that may have a causal relationshipu or are similar to the study outcome. 
+
+The top 50 outcomes based on their prevalence will be selected. 
+
+After doing, so the final list of 50 negative outcomes to be used in the study are: 
 
 
-Inclusion rules based on the index date: 
+OMOP Concept ID     Outcome Name 
 
-Cannot have an aortic dissection diagnosis (note: it’s ok if they’ve had an aortic aneurysm first) code prior to the index date  
+4170145             Absence of lung 
+
+4093531             Absence of toe 
+
+4092879             Absent kidney 
+
+42539582            Acquired absence of genital organ 
+
+434170              Atypical squamous cells of undetermined significance on cervical Papanicolaou smear 
+
+4067069             Callosity 
+
+4213540             Cervical somatic dysfunction 
+
+443570              Cervicovaginal cytology: Low grade squamous intraepithelial lesion 
+
+201613              Chronic nonalcoholic liver disease 
+
+43021250            Complication associated with orthopedic device 
+
+46269889            Complication due to Crohn's disease 
+
+42537730            Coronary artery graft present 
+
+436233              Delayed milestone 
+
+438021              Disorder due to and following fracture of upper limb 
+
+192367              Dysplasia of cervix 
+
+4062791             Endocrine, nutritional and metabolic disease complicating pregnancy, childbirth and puerperium 
+
+200775              Endometrial hyperplasia 
+
+374358              Excess skin of eyelid 
+
+4059015             Falls 
+
+4264617             Foot-drop 
+
+4201388             Gastrostomy present 
+
+4166231             Genetic predisposition 
+
+4295287             Hypercoagulability state 
+
+196473              Hypertrophy of uterus 
+
+443447              Iatrogenic hypotension 
+
+4344500             Impingement syndrome of shoulder region 
+
+441417              Incoordination 
+
+4168222             Intra-abdominal and pelvic swelling, mass and lump 
+
+196168              Irregular periods 
+
+439795              Minimal cognitive impairment 
+
+40480893            Nonspecific tuberculin test reaction 
+
+438130              Opioid abuse 
+
+4022076             Patient dependence on care provider 
+
+4141640             Perimenopausal disorder 
+
+437092              Physiological development failure 
+
+4012231             Poor stream of urine 
+
+46286594            Problem related to lifestyle 
+
+443274              Psychostimulant dependence 
+
+436246              Reduced libido 
+
+43021237            Secondary erectile dysfunction 
+
+4052226             Sequelae of injuries of lower limb 
+
+4125590             Slurred speech 
+
+36713918            Somatic dysfunction of lumbar region 
+
+4002818             Spasm of back muscles 
+
+4008710             Stenosis due to any device, implant AND/OR graft 
+
+4201387             Tracheostomy present 
+
+42538119            Transplanted heart valve present 
+
+444074              Victim of vehicular AND/OR traffic accident 
+
+195603              Vulval and/or perineal noninflammatory disorders 
+
+4216670             Worried well 
 
 
-Positive outcome controls:  
-
-injury of achilles tendon and achilles tendinitis (need athena concept code for these) 
 
 ## Analysis
 
@@ -475,41 +558,45 @@ Population-level estimation:
 
 Proportional hazard models will be used to assess the hazard ratios between the two exposure cohorts for each condition of interest and for each setting.  
 
-Adjustment for baseline confounders will be done using propensity scores. (to be discussed) First a propensity model will be fitted and used to create propensity scores (PS). These PS will be used ot match the treatment and comparator cohorts, and the proportional hazards outcome models will be conditioned on the matched sets of strata respectively.  
-
-Self-controlled case series? (to be discussed) 
+Adjustment for baseline confounders will be done using propensity scores. First a propensity model will be fitted and used to create propensity scores (PS). These PS will be used ot match the treatment and comparator cohorts, and the proportional hazards outcome models will be conditioned on the matched sets of strata respectively.  
 
 The analysis will be performed as an intention to treat where exposure is considered from index date until end of the observation (until the occurrence of outcome, death or end of study).  
 
-Negative controls: to be decided. Outcomes not believed to be caused by FQs or active comparator medicines will also be included. The hazard ratios computed for these negative controls will be used to evaluate residual bias and compute calibrated p-values for the outcomes of interest.  
+Negative controls: as described above. The hazard ratios computed for these negative controls will be used to evaluate residual bias and compute calibrated p-values for the outcomes of interest.  
+
+##Study diagnostics
+Analyses using observational data can produce misleading estimates as a result of study design and analytic choices. We will implement several study diagnostics using pre-specified decision thresholds to evaluate the reliability of our analyses. These study diagnostics will assist with understanding the risk of bias and generalizability of the estimates generated in each database across the network of databases involved in the study. Only results that passed the pre-specified thresholds set for each diagnostics will contribute to the meta-analytic estimates. 
+
+###Covariate balance
+We will implement propensity score matching to account for confounding between treatment groups. Propensity score models will include covariates such as age, race, medications, medical conditions, procedure exposure, medical exposure, and laboratory values. The number of covariates to be included will be between 10,000 to 100,000. Large-scale regularized regression will be used to fit the propensity model. Patients will be matched 1:1 between the target and outcome cohorts..  
+
+To determine whether the PS matching is sufficient to balance baseline patient characteristics we will calculate the standardised mean difference between treatment cohorts after propensity score matching. Covariate balance diagnostic will be achieved if all SMDs of predefined covariates below are less than 0.1.  
 
 
+Age group: Age was grouped in 5-year intervals 
 
-Descriptive analysis  
+Gender 
 
-Demographic and clinical characteristics: pre matching and post matched (with   
+Race 
 
-Primary analysis : 
+Ethnicity 
 
-UTI: Outpatient: FQ initiation and risk of first ever AA/AD compared to outpatient initiated active comparator and risk of first ever AA/AD 
+Medical history: Acute respiratory disease, Attention deficit hyperactivity disorder, Chronic liver disease, Chronic obstructive lung disease, Crohn's disease, Dementia, Depressive disorder, Diabetes mellitus, Gastroesophageal reflux disease, Gastrointestinal hemorrhage, Human immunodeficiency virus infection, Hyperlipidemia,Hypertensive disorder, Lesion of liver, Obesity, Osteoarthritis, Pneumonia, Psoriasis, Renal impairment, Rheumatoid arthritis, Schizophrenia, Substance abuse, Ulcerative colitis, Viral hepatitis C, Visual system disorder, Atrial fibrillation, Cerebrovascular disease, Coronary arteriosclerosis, Heart disease, Heart failure, Ischemic heart disease, Peripheral vascular disease, Pulmonary embolism, Venous thrombosis, Hematologic neoplasm, Malignant lymphoma, Malignant neoplasm of anorectum, Malignant neoplastic disease, Malignant tumor of breast, Malignant tumor of colon, Malignant tumor of lung, Malignant tumor of urinary bladder, Primary malignant neoplasm of prostate 
 
-UTI: Inpatient: FQ initiation and risk of first ever AA/AD compared to inpatient initiated active comparator and risk of first ever AA/AD 
+Medication use: Agents acting on the renin-angiotensin system, Antibacterials for systemic use, Antidepressants, Antiepileptics, Antiinflammatory and antirheumatic products, Antineoplastic agents, Antipsoriatics, Antithrombotic agents, Beta blocking agents, Calcium channel blockers, Diuretics, Drugs for acid related disorders, Drugs for obstructive airway diseases, Drugs used in diabetes, Immunosuppressants, Lipid modifying agents, Opioids, Psycholeptics, Psychostimulants, Agents used for ADHD and nootropics 
 
-Pneumonia: Outpatient: FQ initiation and risk of first ever AA/AD compared to outpatient initiated active comparator and risk of first ever AA/AD 
+Comorbidity index: Charlson Comorbidity Index, CHA2DS2-Vasc score, Diabetes Complications Severity Index 
 
-Pneumonia: inpatient: FQ initiation and risk of first ever AA/AD compared to inpatient initiated active comparator and risk of first ever AA/AD 
+###Clinical equipoise
+Empirical equipoise will be assessed by determining the overlap in preference score distribution between the target and comparator cohorts. The preference score distribution is a transformation of the propensity score. High overlap, and greater equipoise ensures that results will be generalisable back to the original cohort. Good equipoise means that even a large propensity score model could not discriminate between preference for two treatments. This is similar to randomised clinical trials where study participants have the same probability of receiving either intervention in a 1:1 randomised trial regardless of their characteristics. at the clinical equipoise diagnostic was achieved if at least 20% of matched patients had a preference score between 0.3 and 0.7.  
 
+###Systematic error
+To determine systematic error or residual bias (due to study design and analytic choices), we will estimate systematic error by employing negative controls. Negative controls (as described above) are determined as outcomes which are assumed to not be associated with either the target or comparator treatment. We will include 50 negative controls in our analysis. For each of these outcomes we will implement the analysis as per the primary analysis and we compare the estimated result of the analysis against the “known truth”, in this case we expect the true realative risk to be 1. Positive controls will not be utilised as there are no medicines which are known to increase risk of aortic aneurysm or dissection. 
 
+Overall systematic error will be calculated as the Expected Absolute Systematic Error (EASE) score. If EASE score is low, then calibrated and uncalibrated estimates (hazard ratios, p-values, confidence intervals) will be similar indicating little to no systematic error or unmeasured confounding that is not being accounted for in the results of the study. The systematic bias diagnostic will be achieved if the EASE value was less than 0.25. 
 
-Secondary analysis:  
+Study diagnostics: Overall an analysis was considered to have passed study diagnostics if SMDs of predefined covariates were less than 0.1, equipoise was greater than 0.2 and EASE was less than 0.25. 
 
-Head-to-head comparison of individual fluoroquinolones with individual active comparators by setting and diagnosis (UTI or pneumonia)  
-
-
-
-Patient level prediction: 
-
-TBD.  
 
 # Sample Size and Study Power {#sample-size}
 
@@ -527,9 +614,11 @@ The study uses only de-identified data. Confidentiality of patient records will 
 
 # References {-}
 
-.	Dai XC, Yang XX, Ma L, Tang GM, Pan YY, Hu HL. Relationship between fluoroquinolones and the risk of aortic diseases: a meta-analysis of observational studies. BMC Cardiovasc Disord. 2020;20(1):49. 
+Dai XC, Yang XX, Ma L, Tang GM, Pan YY, Hu HL. Relationship between fluoroquinolones and the risk of aortic diseases: a meta-analysis of observational studies. BMC Cardiovasc Disord. 2020;20(1):49. 
 
-2.	Yu X, Jiang DS, Wang J, Wang R, Chen T, Wang K, Cao S, Wei X. Fluoroquinolone Use and the Risk of Collagen-Associated Adverse Events: A Systematic Review and Meta-Analysis. Drug Saf. 2019;42(9):1025-1033. 
+Yu X, Jiang DS, Wang J, Wang R, Chen T, Wang K, Cao S, Wei X. Fluoroquinolone Use and the Risk of Collagen-Associated Adverse Events: A Systematic Review and Meta-Analysis. Drug Saf. 2019;42(9):1025-1033. 
+
+Voss EA, Boyce RD, Ryan PB, van der Lei J, Rijnbeek PR, Schuemie MJ. Accuracy of an automated knowledge base for identifying drug adverse reactions. J Biomed Inform 2017; 66: 72–81.
 
 <div id="refs"></div>
 
