@@ -64,7 +64,7 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE)
 options(kableExtra.latex.load_packages = FALSE)
 library(kableExtra)
 library(dplyr)
-options(readr.show_col_types = FALSE)
+#options(readr.show_col_types = FALSE)
 options(knitr.kable.NA = "")
 options(knitr.table.format = function() {
   if (knitr::is_latex_output()) {
@@ -90,8 +90,8 @@ abbreviations <- readr::read_delim(col_names = FALSE, delim = ";", trim_ws = TRU
   RxNorm;	US-specific terminology that contains all medications available on the US market
   SNOMED;	Systematized Nomenclature of Medicine
   UTI;	Urinary Tract Infection
-  ",
-  show_col_types = FALSE)
+  "#,show_col_types = FALSE
+  )
 tab <- knitr::kable(abbreviations, col.names = NULL, linesep = "", booktabs = TRUE)
 if (knitr::is_latex_output()) {
   tab %>% kable_styling(latex_options = c("striped", "hold_position"), 
@@ -117,8 +117,8 @@ parties <- readr::read_delim(col_names = TRUE, delim = ";", trim_ws = TRUE, file
   Jung Ho Kim*;	Yonsei University
   Jung Ah Lee;	Yonsei University
   Patrick Ryan*;	Columbia University, Janssen
-  ",
-  show_col_types = FALSE)
+  "#,show_col_types = FALSE
+  )
 tab <- kable(parties, booktabs = TRUE, linesep = "") %>%
   column_spec(1, width = "10em") %>%
   column_spec(2, width = "35em") %>%
@@ -199,8 +199,8 @@ January 2010 and December 2019.
 ```{r amendments, echo=FALSE}
 amendments <- readr::read_delim(col_names = TRUE, delim = ";", trim_ws = TRUE, file = "
   Number; Date; Section of study protocol; Amendment or update; Reason
-",
-  show_col_types = FALSE)
+"#,show_col_types = FALSE
+)
 tab <- kable(amendments, booktabs = TRUE, linesep = "")
 if (knitr::is_latex_output()) {
   tab %>% kable_styling(latex_options = c("striped", "hold_position"), font_size = latex_table_font_size)
@@ -268,7 +268,7 @@ We intend to study data with different data source provenance (e.g., electronic 
 
 All participating sites and data partners will obtain approval or exemption from their institutional review boards prior to participating in the study. 
 
-##Study time period
+## Study time period
 The study will utilize data from 1 January 2010 to 31 December 2019. The study period will be restricted to end of 2019 to avoid the potential impact of COVID-19 pandemic on patterns in antibiotic use. 
 
 ## Study Population
@@ -289,35 +289,45 @@ Three exposure cohorts will be generated:
 
 Only systemic exposure from medications administered orally or via injection will be included in the exposure definitions. TMP and CPH were selected as comparator antibiotics as they are generally recommended in treatment guidelines for UTI. 
 
+### Included fluoroquinolones and concept code
 
+```{r fluoroquinolones, echo=FALSE}
+fluoroquinolones <- readr::read_delim(col_names = FALSE, delim = ";", trim_ws = TRUE, file = "
+Concept ID;    Concept name 
+1721543;       norfloxacin 
+35198003;      pazufloxacin mesilate 
+1747032;       grepafloxacin 
+19041153;      temafloxacin 
+1592954;       delafloxacin 
+1716721;       gemifloxacin 
+923081;        ofloxacin 
+19050750;      fleroxacin 
+1712549;       trovafloxacin 
+35197938;      garenoxacin mesilate hydrate 
+36878831;      nadifloxacin 
+40161662;      besifloxacin 
+43009030;      tosufloxacin tosylate hydrate 
+1743222;       enoxacin 
+35834909;      lascufloxacin hydrochloride 
+35198165;      sitafloxacin hydrate 
+1789276;       gatifloxacin 
+1797513;       ciprofloxacin 
+1742253;       levofloxacin 
+1716903;       moxifloxacin 
+35197897;      prulifloxacin 
+19027679;      pefloxacin 
+1733765;       sparfloxacin 
+1707800;       lomefloxacin
+")
+tab <- knitr::kable(fluoroquinolones, col.names = NULL, linesep = "", booktabs = TRUE)
+if (knitr::is_latex_output()) {
+  tab %>% kable_styling(latex_options = c("striped", "hold_position"), 
+                        font_size = latex_table_font_size)
+} else {
+  tab %>% kable_styling(bootstrap_options = "striped")
+}
+```
 
-Included fluoroquinolones and concept code: 
-
-Concept ID    Concept name 
-1721543       norfloxacin 
-35198003      pazufloxacin mesilate 
-1747032       grepafloxacin 
-19041153      temafloxacin 
-1592954       delafloxacin 
-1716721       gemifloxacin 
-923081        ofloxacin 
-19050750      fleroxacin 
-1712549       trovafloxacin 
-35197938      garenoxacin mesilate hydrate 
-36878831      nadifloxacin 
-40161662      besifloxacin 
-43009030      tosufloxacin tosylate hydrate 
-1743222       enoxacin 
-35834909      lascufloxacin hydrochloride 
-35198165      sitafloxacin hydrate 
-1789276       gatifloxacin 
-1797513       ciprofloxacin 
-1742253       levofloxacin 
-1716903       moxifloxacin 
-35197897      prulifloxacin 
-19027679      pefloxacin 
-1733765       sparfloxacin 
-1707800       lomefloxacin 
 
 ## Exposure Comparators
 
@@ -389,7 +399,7 @@ The primary outcome will be diagnosis of either AA or AD during a hospital or em
 
 Details of the outcome definitions are provided below: 
 
-###Aortic Aneurysm
+### Aortic Aneurysm
 ICD-9-CM:
 441;441.0; 441.1; 441.2; 441.3; 441.3; 441.4; 441.5; 441.6; 441.7; 441.9
 
@@ -404,7 +414,7 @@ ICD-9 PROCEDURE:
 
 Positive Predictive Value was calculated for this outcome based on hospitalization or emergency room (ER) visits at any diagnosis position based on the ICD-10 code in the single Korean tertiary hospital, Severance Hospital (Yonsei University Heatlh System). PPV, % (n) = 97 (97/100)
 
-###Aortic dissection
+### Aortic dissection
 ICD-9-CM: 
 441.0; 441.00; 441.01; 441.02; 441.03
 
@@ -413,7 +423,7 @@ I71.0
 
 PPV= 79% (N= 79/100)
 
-###Negative control outcomes
+### Negative control outcomes
 Negative control outcomes are known to have no association with the target (fluoroquinolone) or comparator (trimethoprim or cephalosporin) cohorts, such that we can assume the true relative risk between the two cohorts is 1. Negative control outcomes for this study will be selected based on a similar process to that outlined by Voss et al. Once potential negative control candidates are selected, a manual clinical review will be performed to exclude any pairs that may have a causal relationshipu or are similar to the study outcome. 
 
 The top 50 outcomes based on their prevalence will be selected. 
@@ -551,10 +561,10 @@ Cox proportional hazards will be used to estimate the hazard ratio of each outco
 
 A Bayesian random-effects meta-analysis will be conducted to combine each sites hazard ratio estimate into a single aggregated hazard ratio using non-normal likelihood approximations to avoid bias due to small or zero counts. 
 
-##Study diagnostics
+## Study diagnostics
 Analyses using observational data can produce misleading estimates as a result of study design and analytic choices. We will implement several study diagnostics using pre-specified decision thresholds to evaluate the reliability of our analyses. These study diagnostics will assist with understanding the risk of bias and generalizability of the estimates generated in each database across the network of databases involved in the study. Only results that passed the pre-specified thresholds set for each diagnostics will contribute to the meta-analytic estimates. 
 
-###Covariate balance
+### Covariate balance
 We will implement propensity score matching to account for confounding between treatment groups. Propensity score models will include covariates such as age, race, medications, medical conditions, procedure exposure, medical exposure, and laboratory values. The number of covariates to be included will be between 10,000 to 100,000. Covariate use behaviours over the 30 to 365 days prior to index date will be utliised for PS model calculation.
 
 Large-scale regularized regression will be used to fit the propensity model. Separate PS models will be constructed for each comparator. Patients will be matched 1:1 between the target and comparator cohorts. 
@@ -576,10 +586,10 @@ Medication use: Agents acting on the renin-angiotensin system, Antibacterials fo
 
 Comorbidity index: Charlson Comorbidity Index, CHA2DS2-Vasc score, Diabetes Complications Severity Index 
 
-###Clinical equipoise
+### Clinical equipoise
 Empirical equipoise will be assessed by determining the overlap in preference score distribution between the target and comparator cohorts. The preference score distribution is a transformation of the propensity score. High overlap, and greater equipoise ensures that results will be generalisable back to the original cohort. Good equipoise means that even a large propensity score model could not discriminate between preference for two treatments. This is similar to randomised clinical trials where study participants have the same probability of receiving either intervention in a 1:1 randomised trial regardless of their characteristics. at the clinical equipoise diagnostic was achieved if at least 20% of matched patients had a preference score between 0.3 and 0.7.  
 
-###Systematic error
+### Systematic error
 To determine systematic error or residual bias (due to study design and analytic choices), we will estimate systematic error by employing negative controls. Negative controls (as described above) are determined as outcomes which are assumed to not be associated with either the target or comparator treatment. We will include 50 negative controls in our analysis. For each of these outcomes we will implement the analysis as per the primary analysis and we compare the estimated result of the analysis against the “known truth”, in this case we expect the true realative risk to be 1. Positive controls will not be utilised as there are no medicines which are known to increase risk of aortic aneurysm or dissection. 
 
 Overall systematic error will be calculated as the Expected Absolute Systematic Error (EASE) score. EASE will be calculated by first fitting the systematic error distribution across the set of negative control outcomes and then taking the aboslute expected value of the distribution.
@@ -595,7 +605,7 @@ Sample size and study power will be calculated based on the number of patients i
 
 # Strengths and Limitations {#strengths-limitations}
 
-##Strengths
+## Strengths
 This large-scale distributed network study wil' use a rigorous design with objective diagnostics to reduce bias and confounding. The study design ensures transparency, reproducibility and reliability of results. 
 
 To minimize confounding by indication, we will restrict the analysis to patients treated in an outpatient setting for UTIs, which are commonly localized, well-characterized infections with a similar severity profile across presentations.
@@ -606,11 +616,11 @@ We will also use a standardized analytic package to generate the analytic result
 
 Our approach also mirrors that of a hypothetical randomized controlled trial by employing a new-user, active comparator design with clearly defined indications and we will implmement an outcome-agnostic, data-driven PS model, modelled using large-scale regularised regression. 
 
-We will also apply the suite of predefined objective diagnostics as described above to esnure the quality of evidence focusing on sufficient covaraiate balance, overlap in preference score distributions, and minimal systematic error as evluated by a comprehensive set of negative control outcomes. 
+We will also apply the suite of predefined objective diagnostics as described above to esnure the quality of evidence focusing on sufficient covaraiate balance, overlap in preference score distributions, and minimal systematic error as evaluated by a comprehensive set of negative control outcomes. 
 
 Only analyses that pass all objective diagnostic tests will be included in the meta-analysis. 
 
-##Limitations
+## Limitations
 The definition of AA/AD will rely on ICD-9-CM and ICD-10-CM codes rather than imaging modalities. We have however validated our specific diagnosis codes in one Korean tertiary hospital with high PPV for the outcomes of investigation. 
 
 Results may not be generalizable to other indications as we only examined FQs used to treat UTIs in the outpatient setting.
@@ -651,17 +661,9 @@ Voss EA, Boyce RD, Ryan PB, van der Lei J, Rijnbeek PR, Schuemie MJ. Accuracy of
 
 \centerline{\Huge Appendix}
 
-# (APPENDIX) Appendix {-}
-
-# Exposure Cohort Definitions
-
 ```{r appendix,  echo=FALSE, results="asis", warning=FALSE, message=FALSE}
 # source("https://raw.githubusercontent.com/ohdsi-studies/LegendT2dm/master/R/PrettyOutput.R")
 # printCohortDefinitionFromNameAndJson(name = "Template Cohort (New-users of DDP4 inhibitors)",
 #                                      json = SqlRender::readSql("templateCohort.json"),
 #                                      withConcepts = TRUE)
 ```
-
-# Outcome Cohort Definitions
-
-# Negative Control Concepts {#negative-controls}
